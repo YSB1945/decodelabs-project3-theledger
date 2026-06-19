@@ -51,6 +51,18 @@ Application state lives in plain JavaScript memory (no external store, no framew
 
 The DOM is treated as a pure reflection of state — the UI is re-rendered from state on every change, rather than being manually patched in inconsistent, scattered places.
 
+## 📁 File Structure
+
+```text
+decodelabs-project3-theledger/
+├── index.html                  # Main document — semantic HTML5 and static DOM scaffolding
+├── style.css                   # External stylesheet — Design tokens, layouts, and visual states (.is- hooks)
+├── script.js                   # Logic actuator — Vanilla JS, IPO loop, state management, and DOM mutation
+├── README.md                   # Technical documentation & architecture blueprint
+└── audit/
+    └── lighthouse-report.html  # Audited Chrome DevTools Lighthouse report
+
+    
 ## 🎓 What I Learned
 This project pushed me to deeply internalize concepts that frameworks usually abstract away:
 * **Manual DOM construction:** Building every list item, stat, and SVG element by hand gave me a much clearer mental model of the DOM tree, reflow/repaint behavior, and why frameworks like React exist.
