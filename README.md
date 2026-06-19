@@ -197,7 +197,7 @@ No build step. No package manager. No server strictly required for basic viewing
 
 ```bash
 # Clone the repository
-git clone https://github.com/YSB1945/decodelabs-project3-theledger.git
+git clone https://github.com/YSB1945/decodelabs-project3-theledger-YASSINEBOUALLAQ.git
 
 # Navigate to the project folder
 cd decodelabs-project3-theledger
