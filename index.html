@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Progress Dashboard — Track grades and averages in real time</title>
+  <meta name="description" content="A real-time student progress dashboard. Add subjects and grades, watch your overall average update instantly, and see at a glance which subjects are passing or failing." />
+  <meta name="theme-color" content="#F6F4EE" />
+  <link rel="canonical" href="https://example.com/student-dashboard/" />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="Student Progress Dashboard" />
+  <meta property="og:description" content="Track subject grades and your live average in one place." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#add-subject-heading">Skip to add subject form</a>
+
+  <header class="dashboard-header">
+    <div class="dashboard-header__brand">
+      <span class="dashboard-header__eyebrow">DecodeLabs &middot; Project 3</span>
+      <h1 class="dashboard-header__title">The Ledger</h1>
+      <p class="dashboard-header__subtitle">A running record of subjects, grades, and where you stand.</p>
+    </div>
+
+    <!-- js- hook: behavior only. is- class added/removed by JS for visual state. -->
+    <button type="button" class="theme-toggle js-theme-toggle" aria-pressed="false">
+      <svg class="theme-toggle__icon theme-toggle__icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+      </svg>
+      <svg class="theme-toggle__icon theme-toggle__icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="theme-toggle__label js-theme-label">Night mode</span>
+    </button>
+  </header>
+
+  <main class="dashboard-layout">
+
+    <!-- HERO / OUTPUT ZONE: the average is the signature element -->
+    <section class="hero-panel" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="visually-hidden">Overall Average</h2>
+
+      <div class="average-ring js-average-ring" data-fill="0">
+        <svg class="average-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="average-ring__track" cx="100" cy="100" r="86" />
+          <circle class="average-ring__fill js-ring-fill" cx="100" cy="100" r="86" />
+        </svg>
+        <div class="average-ring__center">
+          <p class="average-ring__value js-average-value">—</p>
+          <p class="average-ring__unit">/ 20 avg</p>
+        </div>
+      </div>
+
+      <p class="hero-panel__status js-status-label">No grades recorded yet</p>
+
+      <dl class="hero-panel__meta">
+        <div class="hero-panel__meta-item">
+          <dt>Subjects logged</dt>
+          <dd class="js-subject-count">0</dd>
+        </div>
+        <div class="hero-panel__meta-item">
+          <dt>Passing threshold</dt>
+          <dd>10.00 / 20</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- INPUT ZONE -->
+    <section class="entry-panel" aria-labelledby="add-subject-heading">
+      <h2 id="add-subject-heading" class="entry-panel__title">Log a subject</h2>
+
+      <form class="grade-form js-grade-form" novalidate>
+        <div class="form-field">
+          <label for="subject-name">Subject</label>
+          <input
+            type="text"
+            id="subject-name"
+            class="js-subject-input"
+            placeholder="Algorithms"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="form-field form-field--grade">
+          <label for="subject-grade">Grade</label>
+          <input
+            type="number"
+            id="subject-grade"
+            class="js-grade-input"
+            placeholder="14.5"
+            min="0"
+            max="20"
+            step="0.25"
+            required
+          />
+          <span class="form-field__suffix">/ 20</span>
+        </div>
+
+        <p class="form-error js-form-error" role="alert"></p>
+
+        <button type="submit" class="btn btn-primary js-submit">
+          Add to ledger
+        </button>
+      </form>
+    </section>
+
+    <!-- DYNAMIC NODE LIST -->
+    <section class="list-panel" aria-labelledby="subject-list-heading">
+      <div class="list-panel__header">
+        <h2 id="subject-list-heading" class="list-panel__title">Entries</h2>
+        <span class="list-panel__hint">Most recent first</span>
+      </div>
+
+      <ul class="subject-list js-subject-list">
+        <!-- Subject <li> nodes are injected here by JavaScript. Never via innerHTML. -->
+      </ul>
+
+      <p class="empty-state js-empty-state">
+        The ledger is empty. Log your first subject to see your average take shape.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="dashboard-footer">
+    <p>Engineered with the Input &rarr; Process &rarr; Output loop. Vanilla JS, zero dependencies.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
